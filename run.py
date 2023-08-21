@@ -3,6 +3,8 @@
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 import gspread
 from google.oauth2.service_account import Credentials
+import math  # Import the math module
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -13,7 +15,7 @@ SCOPE = [
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('love_sandwiches')
+SHEET = GSPREAD_CLIENT.open('ScoopsofLife')
 
 
 def get_sales_data():
@@ -120,6 +122,12 @@ def calculate_stock_data(data):
 
     return new_stock_data
 
+    def calculate_scoops_from_kilograms(kilograms):
+   
+    scoops_per_kilogram = 1000 / 113  # 1kg = 1000/113 scoops
+    scoops = kilograms * scoops_per_kilogram
+    return scoops
+
 
 def main():
     """
@@ -134,6 +142,16 @@ def main():
     stock_data = calculate_stock_data(sales_columns)
     update_worksheet(stock_data, "stock")
 
+    
 
-print("Welcome to Love Sandwiches Data Automation")
+
+
+
+  
+
+
+
+
+
+print("Welcome to Scoops of Life Data Automation")
 main()
