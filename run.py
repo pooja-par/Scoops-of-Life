@@ -32,21 +32,26 @@ def get_sales_data():
     """
     while True:
         print("Please enter sales data from the last market.")
-        print("Data should be six numbers, separated by commas.")
+        print("Data should be nine numbers, separated by commas.")
         print("Example: 10,20,30,40,50,60,70,80,90\n")
         print("In the sequence of:")
-        print("vanila, browncrunch, saffron, caramel apple, mocha macchiato, peanutbutter pie, dark chocolate, strawberry, lemon")
+        print("vanila, browncrunch, saffron, caramel apple, mocha macchiato, peanutbutter pie, dark chocolate, strawberry, lemon\n")
 
         data_str = input("Enter your data here:\n")
 
-        sales_data = data_str.split(",")
+        sales_data_scoop = data_str.split(",")
+      
         
-
-        if validate_data(sales_data):
+        if validate_data(sales_data_scoop):
+            #sales_data = sales_data.*0.1         # convert scoop into kg
             print("Data is valid!")
-            break
+            break     
 
-        sales_data = sales_data*0.1         # convert scoop into kg. 
+    sales_data = []                                 # define the list which shows data in kg
+    for scoop in sales_data_scoop:
+        scoop = float(scoop)*0.1                    # convert 1 scoop into 0.1 kg
+        sales_data.append(float(scoop))
+    #print(sales_data)
 
     return sales_data
 
@@ -63,8 +68,9 @@ def validate_data(values):
          
         if len(values) != 9:
             raise ValueError(
-                f"Exactly 9 values required, you provided {len(values)}"
+                f" Exactly 9 values required, you provided {len(values)}"
             )
+
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
         return False
@@ -134,7 +140,7 @@ def calculate_stock_data(data):
 
     return new_stock_data
 
-    def calculate_scoops_from_kilograms(kilograms):
+def ulate_scoops_from_kilograms(kilograms):
    
     scoops_per_kilogram = 1000 / 113  # 1kg = 1000/113 scoops
     scoops = kilograms * scoops_per_kilogram
@@ -146,7 +152,7 @@ def main():
     Run all program functions
     """
     data = get_sales_data()
-    sales_data = [int(num) for num in data]
+    #sales_data = [float(num) for num in data]
     """
     update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
@@ -156,14 +162,6 @@ def main():
     update_worksheet(stock_data, "stock")
     """
     
-
-
-
-
-  
-
-
-
 
 
 print("Welcome to Scoops of Life Data Automation")
