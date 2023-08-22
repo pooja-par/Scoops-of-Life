@@ -33,11 +33,17 @@ def get_sales_data():
     while True:
         print("Please enter sales data from the last market.")
         print("Data should be nine numbers, separated by commas.")
-        print("Example: 10,20,30,40,50,60,70,80,90\n")
+        print("Example: 100,200,300,400,500,600,700,800,900\n")
         print("In the sequence of:")
         print("vanila, browncrunch, saffron, caramel apple, mocha macchiato, peanutbutter pie, dark chocolate, strawberry, lemon\n")
 
         data_str = input("Enter your data here:\n")
+        """
+        waffle_count = input("Enter the total number of waffles used:\n")
+        cup_count = input("Enter the total number of cups used:\n")
+        waffle_cup = [int(cup_count), int(waffle_count)]
+        print (waffle_cup)
+        """
 
         sales_data_scoop = data_str.split(",")
       
@@ -63,13 +69,27 @@ def validate_data(values):
     or if there aren't exactly 9 values.
     """
     try:
+        total_scoop = 0
         for value in values:
             value = float(value)
-         
+            total_scoop = total_scoop + value
+
+        """
+        total_waffle_cup = 0
+        for data in waffle_cup:
+            data = int(data)
+            total_waffle_cup = total_waffle_cup + data
+        """
+
         if len(values) != 9:
             raise ValueError(
                 f" Exactly 9 values required, you provided {len(values)}"
             )
+
+        """
+        if total_waffle_cup > total_scoop:
+            raise ValueError(f"Selling of total waffles and cups ({total_waffle_cup}) can not be more than total scoops ({total_scoop})")
+        """
 
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
@@ -103,7 +123,7 @@ def calculate_surplus_data(sales_row):
     
     surplus_data = []
     for stock, sales in zip(stock_row, sales_row):
-        surplus = int(stock) - sales
+        surplus = float(stock) - sales
         surplus_data.append(surplus)
 
     return surplus_data
@@ -151,7 +171,11 @@ def main():
     """
     Run all program functions
     """
-    data = get_sales_data()
+    sales_data = get_sales_data()
+    #print(sales_data)
+    update_worksheet(sales_data, "sales")
+    new_surplus_data = calculate_surplus_data(sales_data)
+    update_worksheet(new_surplus_data, "icecream_surplus")
     #sales_data = [float(num) for num in data]
     """
     update_worksheet(sales_data, "sales")
