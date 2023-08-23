@@ -94,7 +94,7 @@ def find_favorit(sales_data,flavors):
 
     favorit_icecream = [popular_flavor, format(favorit_quantity, ".2f"), format(total_sales, ".2f"), str(format(favorit_contribution, ".2f")) + " %"]
 
-    print(favorit_icecream)
+    #print(favorit_icecream)
 
     return favorit_icecream
 
@@ -175,7 +175,9 @@ def main():
     """
     sales_data,flavors = get_sales_data()
     update_worksheet(sales_data, "sales")
-    find_favorit(sales_data,flavors)
+    favorit_icecream =  find_favorit(sales_data,flavors)
+    update_worksheet(favorit_icecream, "favorit_flavor")
+    
     """
     update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
