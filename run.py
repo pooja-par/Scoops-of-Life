@@ -110,37 +110,37 @@ def update_worksheet(data, worksheet):
     print(f"{worksheet} worksheet updated successfully\n")
 
 
-def calculate_surplus_data(sales_row):
+def calculate_surplus_data(order_row):
     """
-    #Compare sales with stock and calculate the surplus for each item type.
+    #Compare order with stock and calculate the surplus for each item type.
 
     #The surplus is defined as the sales figure subtracted from the stock:
     #- Positive surplus indicates waste
-    #- Negative surplus indicates extra made when stock was sold out.
+    #- Negative surplus indicates orders, that could not be fulfilled. 
     """
     print("Calculating surplus data...\n")
     stock = SHEET.worksheet("stock").get_all_values()
     stock_row = stock[-1]
     
     surplus_data = []
-    for stock, sales in zip(stock_row, sales_row):
-        surplus = float(stock) - sales
+    for stock, order in zip(stock_row, order_row):
+        surplus = float(stock) - order
         surplus_data.append(surplus)
 
     return surplus_data
 
 
-def get_last_5_entries_sales():
+def get_last_5_entries_order():
     """
-    #Collects columns of data from sales worksheet, collecting
+    #Collects columns of data from order worksheet, collecting
     #the last 5 entries for each sandwich and returns the data
     #as a list of lists.
     """
-    sales = SHEET.worksheet("sales")
+    order = SHEET.worksheet("order")
 
     columns = []
     for ind in range(1, 7):
-        column = sales.col_values(ind)
+        column = order.col_values(ind)
         columns.append(column[-5:])
 
     return columns
@@ -154,18 +154,12 @@ def calculate_stock_data(data):
     new_stock_data = []
 
     for column in data:
-        int_column = [int(num) for num in column]
+        int_column = [float(num) for num in column]
         average = sum(int_column) / len(int_column)
         stock_num = average * 1.1
         new_stock_data.append(round(stock_num))
 
     return new_stock_data
-
-def ulate_scoops_from_kilograms(kilograms):
-   
-    scoops_per_kilogram = 1000 / 113  # 1kg = 1000/113 scoops
-    scoops = kilograms * scoops_per_kilogram
-    return scoops
 
 
 def main():
@@ -184,21 +178,10 @@ def main():
     # Calculate the surplus data
     new_surplus_data = calculate_surplus_data(order_data)
     update_worksheet(new_surplus_data, "icecream_surplus")
-    """
-    update_worksheet(sales_data, "sales")
-    new_surplus_data = calculate_surplus_data(sales_data)
-    update_worksheet(new_surplus_data, "icecream_surplus")
-    #sales_data = [float(num) for num in data]
-    
-    update_worksheet(sales_data, "sales")
-    new_surplus_data = calculate_surplus_data(sales_data)
-    update_worksheet(new_surplus_data, "surplus")
-    sales_columns = get_last_5_entries_sales()
-    stock_data = calculate_stock_data(sales_columns)
+
+    order_columns = get_last_5_entries_order()
+    stock_data = calculate_stock_data(order_columns)
     update_worksheet(stock_data, "stock")
-    """
-    
-
-
+   
 print("Welcome to Scoops of Life Data Automation")
 main()
