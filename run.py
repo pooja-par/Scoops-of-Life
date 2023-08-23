@@ -32,11 +32,7 @@ def get_sales_data():
     """
     while True:
         print("Please enter sales data from the last market.")
-        print("Data should be nine numbers, separated by commas.")
-        print("Example: 100,200,300,400,500,600,700,800,900\n")
-        print("In the sequence of:")
-        print("vanila, browncrunch, saffron, caramel apple, mocha macchiato, peanutbutter pie, dark chocolate, strawberry, lemon\n")
-
+        
         chocolate_str = input("Enter Chocolate Scoops:\n")
         vanilla_str = input("Enter Vanilla Scoops:\n")
         strawberry_str = input("Enter Strawberry Scoops:\n")
@@ -44,7 +40,7 @@ def get_sales_data():
         saffron_str = input("Enter Saffron Scoops:\n")
 
         ice_cream_sales = [chocolate_str, vanilla_str, strawberry_str, mint_str, saffron_str]
-        
+        ice_cream_flavors = ["Chocolate", "Vanilla", "Strawberry", "Mint", "Saffron"]
         #print (ice_cream_sales)
         #sales_data_scoop = ice_cream_sales.split(",")
       
@@ -60,37 +56,24 @@ def get_sales_data():
         sales_data.append(float(scoop))
     #print(sales_data)
 
-    return sales_data
+    total_sales = sum(sales_data)
+    print(total_sales)
+
+    return sales_data, total_sales
 
 
 def validate_data(values):
     """
     Inside the try, converts all string values into float.
     Raises ValueError if strings cannot be converted into float,
-    or if there aren't exactly 5 values.
+    Purpose is to raise an error even if any number is missing
     """
     try:
         
         for value in values:
             value = float(value)
 
-        """
-        total_waffle_cup = 0
-        for data in waffle_cup:
-            data = int(data)
-            total_waffle_cup = total_waffle_cup + data
-        """
-
-        if len(values) != 5:
-            raise ValueError(
-                f" Exactly 5 values required, you provided {len(values)}"
-            )
-
-        """
-        if total_waffle_cup > total_scoop:
-            raise ValueError(f"Selling of total waffles and cups ({total_waffle_cup}) can not be more than total scoops ({total_scoop})")
-        """
-
+        
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
         return False
