@@ -37,24 +37,25 @@ def get_sales_data():
         print("In the sequence of:")
         print("vanila, browncrunch, saffron, caramel apple, mocha macchiato, peanutbutter pie, dark chocolate, strawberry, lemon\n")
 
-        data_str = input("Enter your data here:\n")
-        """
-        waffle_count = input("Enter the total number of waffles used:\n")
-        cup_count = input("Enter the total number of cups used:\n")
-        waffle_cup = [int(cup_count), int(waffle_count)]
-        print (waffle_cup)
-        """
+        chocolate_str = input("Enter Chocolate Scoops:\n")
+        vanilla_str = input("Enter Vanilla Scoops:\n")
+        strawberry_str = input("Enter Strawberry Scoops:\n")
+        mint_str = input("Enter Mint Scoops:\n")
+        saffron_str = input("Enter Saffron Scoops:\n")
 
-        sales_data_scoop = data_str.split(",")
+        ice_cream_sales = [chocolate_str, vanilla_str, strawberry_str, mint_str, saffron_str]
+        
+        #print (ice_cream_sales)
+        #sales_data_scoop = ice_cream_sales.split(",")
       
         
-        if validate_data(sales_data_scoop):
+        if validate_data(ice_cream_sales):
             #sales_data = sales_data.*0.1         # convert scoop into kg
             print("Data is valid!")
             break     
 
     sales_data = []                                 # define the list which shows data in kg
-    for scoop in sales_data_scoop:
+    for scoop in ice_cream_sales:
         scoop = float(scoop)*0.1                    # convert 1 scoop into 0.1 kg
         sales_data.append(float(scoop))
     #print(sales_data)
@@ -66,13 +67,12 @@ def validate_data(values):
     """
     Inside the try, converts all string values into float.
     Raises ValueError if strings cannot be converted into float,
-    or if there aren't exactly 9 values.
+    or if there aren't exactly 5 values.
     """
     try:
-        total_scoop = 0
+        
         for value in values:
             value = float(value)
-            total_scoop = total_scoop + value
 
         """
         total_waffle_cup = 0
@@ -81,9 +81,9 @@ def validate_data(values):
             total_waffle_cup = total_waffle_cup + data
         """
 
-        if len(values) != 9:
+        if len(values) != 5:
             raise ValueError(
-                f" Exactly 9 values required, you provided {len(values)}"
+                f" Exactly 5 values required, you provided {len(values)}"
             )
 
         """
@@ -173,11 +173,12 @@ def main():
     """
     sales_data = get_sales_data()
     #print(sales_data)
+    """
     update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
     update_worksheet(new_surplus_data, "icecream_surplus")
     #sales_data = [float(num) for num in data]
-    """
+    
     update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
     update_worksheet(new_surplus_data, "surplus")
