@@ -21,17 +21,16 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('ScoopsofLife')
 
 
-def get_sales_data():
+def get_order_data():
     """
-    Get sales figures input from the user.
+    Get the icecream orders input from the user.
     Run a while loop to collect a valid string of data from the user
-    via the terminal, which must be a string of 9 numbers separated
-    by commas. These numbers represent scoop of icecreams for the different flavors.
+    via the terminal. These numbers represent scoop of icecreams for the different flavors.
     Icecreams are normally measured in Kg to compare with the stock. 1 scoop is assumed to be 0.1 kg. 
     Scoops are being converted in kg by multiplication of each scoop with 0.1. 
     """
     while True:
-        print("Please enter sales data from the last market.")
+        print("Please enter order data from the last market.")
         
         chocolate_str = input("Enter Chocolate Scoops:\n")
         vanilla_str = input("Enter Vanilla Scoops:\n")
@@ -39,27 +38,27 @@ def get_sales_data():
         mint_str = input("Enter Mint Scoops:\n")
         saffron_str = input("Enter Saffron Scoops:\n")
 
-        ice_cream_sales = [chocolate_str, vanilla_str, strawberry_str, mint_str, saffron_str]
+        ice_cream_order = [chocolate_str, vanilla_str, strawberry_str, mint_str, saffron_str]
         ice_cream_flavors = ["Chocolate", "Vanilla", "Strawberry", "Mint", "Saffron"]
         #print (ice_cream_sales)
         #sales_data_scoop = ice_cream_sales.split(",")
       
         
-        if validate_data(ice_cream_sales):
+        if validate_data(ice_cream_order):
             #sales_data = sales_data.*0.1         # convert scoop into kg
             print("Data is valid!")
             break     
 
-    sales_data = []                                 # define the list which shows data in kg
-    for scoop in ice_cream_sales:
+    order_data = []                                 # define the list which shows data in kg
+    for scoop in ice_cream_order:
         scoop = float(scoop)*0.1                    # convert 1 scoop into 0.1 kg
-        sales_data.append(float(scoop))
-    #print(sales_data)
+        order_data.append(float(scoop))
+    #print(order_data)
 
-    total_sales = sum(sales_data)
-    print(total_sales)
+    total_order = sum(order_data)
+    #print(total_order)
 
-    return sales_data, ice_cream_flavors
+    return order_data, ice_cream_flavors
 
 
 def validate_data(values):
@@ -80,19 +79,19 @@ def validate_data(values):
 
     return True
 
-def find_favorit(sales_data,flavors):
+def find_favorit(order_data,flavors):
     """
     Purpose of this function is to identify the favorit icecream of the day. 
     """
 
-    popular_index = sales_data.index(max(sales_data))   # gives the index of the most favorit icecream from the list
+    popular_index = order_data.index(max(order_data))   # gives the index of the most favorit icecream from the list
     popular_flavor = flavors[popular_index]             # Provides the best flavor
-    favorit_quantity = sales_data[popular_index]         # provides quantity of the favorit icecream
+    favorit_quantity = order_data[popular_index]         # provides quantity of the favorit icecream
 
-    total_sales = sum(sales_data)
-    favorit_contribution = (favorit_quantity/total_sales)*100
+    total_order = sum(order_data)
+    favorit_contribution = (favorit_quantity/total_order)*100
 
-    favorit_icecream = [popular_flavor, format(favorit_quantity, ".2f"), format(total_sales, ".2f"), str(format(favorit_contribution, ".2f")) + " %"]
+    favorit_icecream = [popular_flavor, format(favorit_quantity, ".2f"), format(total_order, ".2f"), str(format(favorit_contribution, ".2f")) + " %"]
 
     #print(favorit_icecream)
 
@@ -173,11 +172,18 @@ def main():
     """
     Run all program functions
     """
-    sales_data,flavors = get_sales_data()
-    update_worksheet(sales_data, "sales")
-    favorit_icecream =  find_favorit(sales_data,flavors)
+
+    # Enter data into terminal by user
+    order_data,flavors = get_order_data()
+    update_worksheet(order_data, "order")
+
+    # Identifying the most popular flavor with the % contribution
+    favorit_icecream =  find_favorit(order_data,flavors)
     update_worksheet(favorit_icecream, "favorit_flavor")
     
+    # Calculate the surplus data
+    new_surplus_data = calculate_surplus_data(order_data)
+    update_worksheet(new_surplus_data, "icecream_surplus")
     """
     update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
