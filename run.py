@@ -59,7 +59,7 @@ def get_sales_data():
     total_sales = sum(sales_data)
     print(total_sales)
 
-    return sales_data, total_sales
+    return sales_data, ice_cream_flavors
 
 
 def validate_data(values):
@@ -80,6 +80,25 @@ def validate_data(values):
 
     return True
 
+def find_favorit(sales_data,flavors):
+    """
+    Purpose of this function is to identify the favorit icecream of the day. 
+    """
+
+    popular_index = sales_data.index(max(sales_data))   # gives the index of the most favorit icecream from the list
+    popular_flavor = flavors[popular_index]             # Provides the best flavor
+    favorit_quantity = sales_data[popular_index]         # provides quantity of the favorit icecream
+
+    total_sales = sum(sales_data)
+    favorit_contribution = (favorit_quantity/total_sales)*100
+
+    favorit_icecream = [popular_flavor, format(favorit_quantity, ".2f"), format(total_sales, ".2f"), str(format(favorit_contribution, ".2f")) + " %"]
+
+    print(favorit_icecream)
+
+    return favorit_icecream
+
+
 
 def update_worksheet(data, worksheet):
     """
@@ -94,11 +113,11 @@ def update_worksheet(data, worksheet):
 
 def calculate_surplus_data(sales_row):
     """
-    Compare sales with stock and calculate the surplus for each item type.
+    #Compare sales with stock and calculate the surplus for each item type.
 
-    The surplus is defined as the sales figure subtracted from the stock:
-    - Positive surplus indicates waste
-    - Negative surplus indicates extra made when stock was sold out.
+    #The surplus is defined as the sales figure subtracted from the stock:
+    #- Positive surplus indicates waste
+    #- Negative surplus indicates extra made when stock was sold out.
     """
     print("Calculating surplus data...\n")
     stock = SHEET.worksheet("stock").get_all_values()
@@ -114,9 +133,9 @@ def calculate_surplus_data(sales_row):
 
 def get_last_5_entries_sales():
     """
-    Collects columns of data from sales worksheet, collecting
-    the last 5 entries for each sandwich and returns the data
-    as a list of lists.
+    #Collects columns of data from sales worksheet, collecting
+    #the last 5 entries for each sandwich and returns the data
+    #as a list of lists.
     """
     sales = SHEET.worksheet("sales")
 
@@ -130,7 +149,7 @@ def get_last_5_entries_sales():
 
 def calculate_stock_data(data):
     """
-    Calculate the average stock for each item type, adding 10%
+    #Calculate the average stock for each item type, adding 10%
     """
     print("Calculating stock data...\n")
     new_stock_data = []
@@ -154,8 +173,9 @@ def main():
     """
     Run all program functions
     """
-    sales_data = get_sales_data()
-    #print(sales_data)
+    sales_data,flavors = get_sales_data()
+    update_worksheet(sales_data, "sales")
+    find_favorit(sales_data,flavors)
     """
     update_worksheet(sales_data, "sales")
     new_surplus_data = calculate_surplus_data(sales_data)
