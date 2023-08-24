@@ -1,12 +1,12 @@
 """
-Code is prepared to help icecream seller to find optimize the icecream sales.
-Shop has the following icecream flavors. 
-1. vanila, 2. browncrunch, 3. saffron, 4. caramel apple 5. mocha macchiato
-6. peanutbutter pie 7. dark chocolate 8. strawberry 9. lemon
+Code is prepared to help icecream seller to optimize the icecream sales.
+It uses the past history to optimize the stock and determine the most
+popular icecream. 
 """
+
 import gspread
 from google.oauth2.service_account import Credentials
-import math  # Import the math library
+from math import *           # Import the math library
 
 
 SCOPE = [
@@ -15,7 +15,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
-CREDS = Credentials.from_service_account_file('creds.json')
+CREDS = Credentials.from_service_account_file('scoopcreds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('ScoopsofLife')
