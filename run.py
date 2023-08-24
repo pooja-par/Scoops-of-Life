@@ -44,20 +44,15 @@ def get_order_data():
 
         ice_cream_order = [chocolate_str, vanilla_str, strawberry_str, mint_str, saffron_str]
         ice_cream_flavors = ["Chocolate", "Vanilla", "Strawberry", "Mint", "Saffron"]
-        #print (ice_cream_sales)
-        #sales_data_scoop = ice_cream_sales.split(",")
-      
-        
+
         if validate_data(ice_cream_order):
-            #sales_data = sales_data.*0.1         # convert scoop into kg
-            print("Data is valid!")
+            print("Data is valid!\n")
             break     
 
     order_data = []                                 # define the list which shows data in kg
     for scoop in ice_cream_order:
         scoop = float(scoop)*0.1                    # convert 1 scoop into 0.1 kg
         order_data.append(float(scoop))
-    #print(order_data)
 
     total_order = sum(order_data)
     #print(total_order)
@@ -88,9 +83,10 @@ def find_favorit(order_data,flavors):
     Purpose of this function is to identify the favorit icecream of the day. 
     """
 
-    popular_index = order_data.index(max(order_data))   # gives the index of the most favorit icecream from the list
+    # gives the index of the most favorit icecream from the list
+    popular_index = order_data.index(max(order_data)) 
     popular_flavor = flavors[popular_index]             # Provides the best flavor
-    favorit_quantity = order_data[popular_index]         # provides quantity of the favorit icecream
+    favorit_quantity = order_data[popular_index]        # provides quantity of the favorit icecream
 
     total_order = sum(order_data)
     favorit_contribution = (favorit_quantity/total_order)*100
@@ -98,7 +94,6 @@ def find_favorit(order_data,flavors):
     favorit_icecream = [popular_flavor, format(favorit_quantity, ".2f"), 
                         format(total_order, ".2f"), str(format(favorit_contribution, ".2f")) + " %"]
 
-    #print(favorit_icecream)
 
     return favorit_icecream
 
@@ -106,7 +101,7 @@ def find_favorit(order_data,flavors):
 
 def update_worksheet(data, worksheet):
     """
-    Receives a list of integers to be inserted into a worksheet
+    Receives a list of values to be inserted into a worksheet
     Update the relevant worksheet with the data provided
     """
     print(f"Updating {worksheet} worksheet...\n")
@@ -117,20 +112,18 @@ def update_worksheet(data, worksheet):
 
 def calculate_surplus_data(order_row):
     """
-    #Compare order with stock and calculate the surplus for each item type.
+    Compare order with stock and calculate the surplus for each item type.
 
-    #The surplus is defined as the sales figure subtracted from the stock:
-    #- Positive surplus indicates waste
-    #- Negative surplus indicates orders, which were not fulfilled 
+    The surplus is defined as the sales figure subtracted from the stock:
+    - Positive surplus indicates waste
+    - Negative surplus indicates orders, which were not fulfilled 
     """
+
     print("Calculating surplus data...\n")
     stock = SHEET.worksheet("stock").get_all_values()
     stock_row = stock[-1]
-    print(stock_row)
-    print(order_row)
     surplus_data = []
     for stock, order in zip(stock_row, order_row):
-        print(stock)
         surplus = float(stock) - order
         surplus_data.append(surplus)
 
@@ -139,9 +132,9 @@ def calculate_surplus_data(order_row):
 
 def get_last_5_entries_order(n):
     """
-    #Collects columns of data from order worksheet, collecting
-    #the last 5 entries for each icecreams and returns the data
-    #as a list of lists.
+    Collects columns of data from order worksheet, collecting
+    the last 5 entries for each icecreams and returns the data
+    as a list of lists.
     """
     order = SHEET.worksheet("order")
 
@@ -155,7 +148,7 @@ def get_last_5_entries_order(n):
 
 def calculate_stock_data(data):
     """
-    #Calculate the average stock for each item type, adding 10%
+    Calculate the average stock for each item type, adding 10%
     """
     print("Calculating stock data...\n")
     new_stock_data = []
@@ -188,7 +181,6 @@ def main():
 
     # get last five entries in column form
     order_columns = get_last_5_entries_order(len(order_data))
-    print(order_columns)
     
     # calculation of stock data based on average of last 5 days entries
     stock_data = calculate_stock_data(order_columns)
