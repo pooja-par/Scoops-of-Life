@@ -23,14 +23,18 @@ SHEET = GSPREAD_CLIENT.open('ScoopsofLife')
 
 def get_order_data():
     """
-    Get the icecream orders input from the user.
-    Run a while loop to collect a valid string of data from the user
+    Run a while loop to collect a valid string input of data from the user
     via the terminal. These numbers represent scoop of icecreams for the different flavors.
-    Icecreams are normally measured in Kg to compare with the stock. 1 scoop is assumed to be 0.1 kg. 
-    Scoops are being converted in kg by multiplication of each scoop with 0.1. 
+    Icecreams are normally measured in Kg to compare with the stock. 
+    1 scoop is assumed to be 0.1 kg. 
+    
+    Realistic input values are from 200 to 500 scoops. 
     """
     while True:
-        print("Please enter order data from the last market.")
+        print("------------------------------------------------\n")
+        print("Please enter order data from the last market.\n")
+        print("Realistic data are from 100 to 500 scoops\n")
+        print("------------------------------------------------\n")
         
         chocolate_str = input("Enter Chocolate Scoops:\n")
         vanilla_str = input("Enter Vanilla Scoops:\n")
