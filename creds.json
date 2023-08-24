@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "scoops-of-life",
+  "private_key_id": "b03f236032d03dbbfcfe16dc87ac22dd66ce8921",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDpRq7Pk1kM8bPm\nKx8ia+z4nPA6FLqqNVWGAHVm8XhFvXnylNlZg1f9ziERFwZsE3ec6RWV6jgpllW9\nrQaeyNd9X4vb9oyF9S24Hn9jLpQbIIbu+w0LgqxcdWV/0LKdSb7OiTObY4g9JT37\nf04VgvOjTStIWVhMb4/dWiRIOoQNhM7htR2ftXNKtccKQoENQwZra1StwXGeyadt\nuCgHXP53NkyqGWiKrILHBnCbPnJYGc63Btx9bIHHNreW6T5Das7pATUmOl7V9QX4\nUromAjWq+pv/m9Pes3a0GEPWdlyiVRnNRyi/48Lz3JkgXvI0jMb8TeFGzk8HGn1z\nqhHem0dfAgMBAAECggEAZaVHcapeUJ4XCfF7OQf282OK53v11Em2ENQtU+ReyGCl\n/PYv+Oma0zxYuzYhtcELyyLjJXYv76sShDobGuAfyYDzE68MDyjEuagMUN7QaTuU\noBhjWEMhsI304qtA0Pl7u0ocYxaNHDuYlPglQYlUeTEcbYOEzpWEBesLyS86MBr7\n8Gmw5Hn4kSshNcofYOCCG0Doc/kyvwPjmClH8mTz4RqH66r6Uu4IeFBDf9nhbwds\n52uN9o97rikl9B25XYAEBXtCimLj/Xj5zD1tNXSMKtZNfqfQHWIyYcs7Nld3y1Lx\nv0R5zJPq/J2KHgYJhCoUnuOd+tY5VMVfQXS8CpaSEQKBgQD7NOUHmH0ZrnKVPkGQ\nOfkLcd3jfPK9yo6FeieBzTymxn0x3NfKY8GUukXJ73v+FlpRavrT2rxzMKPhyQQj\nk8o0bla7X7NbBfLngYkut0HTSaD61dAA2/udRd4iI0LWsEk9Am4MrW1KzkqPKqZS\nkG4mNDkvsA51Q7YrsDYav2DVTwKBgQDtujNPFRpoWNrx/vcFEU7EhV69IIfbaSIX\n4RAjvXJIItb+I9DUJIVbPtqkL8rjKOUJ4xkK45sgdBjQ2niGLx19gV1P3UIKrkLS\n28End+77S+FFbZNN0g8+YKK2rc/W1fCeP5RogAOE4qGE0f21pu3gI8YjKbE0j+Wb\nmkc9k7gI8QKBgQCZ/DGMd2fwDyRD4da0vySvZEw8v4HY30p//YIsKg/Mt41UvGg2\nsvGd5pUTFM8v0KnqkKZSqRmtjppWtC7qVBS2ERDvaNl7qWjdimT6EvGxv8eDGv+X\nF0HkhUiGKpE1IviyAkRNVx3QpiXEHsO3hrtOheKsHcKvFSOdIjX4LWoBNwKBgH/E\nXoU3a1z/vJTpmqvPlI0MvVFapYnoJFm/LaR30m8wwmoOp9MM2dujmXE6+olCVm8M\n7k2q7Jnxq9C8SqCbu/bTS2p8GV2SMPoQ/+wNipTnQGjHLq9ZobW9zFXwbs8hZtQ2\nibXsb3fBMlwnXHt//0NDFt+ZLdN5L0eFEJroxLWRAoGAWkhHxkReuaSGzQpoXnhr\n9xq0B33oheWwSe5mLrIdGFD5mtj8ZGumQS3SkbMKY1DBsEEoFPizHBie6lQSffg/\ng0eie3uiGjCsKXmc4ihXkPgPnCAwhWqzmw74UDWpCsDjJy6djKKV1jjQgAshyelV\n0C3Lwt9sEsjNOw8lPU+SrDY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "pooja-319@scoops-of-life.iam.gserviceaccount.com",
+  "client_id": "100328572799698677515",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pooja-319%40scoops-of-life.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
