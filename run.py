@@ -181,9 +181,10 @@ def main():
     new_surplus_data = calculate_surplus_data(order_data)
     update_worksheet(new_surplus_data, "icecream_surplus")
 
-    """
+    # get last five entries in column form
     order_columns = get_last_5_entries_order(len(order_data))
     print(order_columns)
+    """
     stock_data = calculate_stock_data(order_columns)
     update_worksheet(stock_data, "stock")
    """
