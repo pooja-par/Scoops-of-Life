@@ -91,7 +91,8 @@ def find_favorit(order_data,flavors):
     total_order = sum(order_data)
     favorit_contribution = (favorit_quantity/total_order)*100
 
-    favorit_icecream = [popular_flavor, format(favorit_quantity, ".2f"), format(total_order, ".2f"), str(format(favorit_contribution, ".2f")) + " %"]
+    favorit_icecream = [popular_flavor, format(favorit_quantity, ".2f"), 
+                        format(total_order, ".2f"), str(format(favorit_contribution, ".2f")) + " %"]
 
     #print(favorit_icecream)
 
@@ -116,7 +117,7 @@ def calculate_surplus_data(order_row):
 
     #The surplus is defined as the sales figure subtracted from the stock:
     #- Positive surplus indicates waste
-    #- Negative surplus indicates orders, that could not be fulfilled. 
+    #- Negative surplus indicates orders, which were not fulfilled 
     """
     print("Calculating surplus data...\n")
     stock = SHEET.worksheet("stock").get_all_values()
@@ -135,7 +136,7 @@ def calculate_surplus_data(order_row):
 def get_last_5_entries_order(n):
     """
     #Collects columns of data from order worksheet, collecting
-    #the last 5 entries for each sandwich and returns the data
+    #the last 5 entries for each icecreams and returns the data
     #as a list of lists.
     """
     order = SHEET.worksheet("order")
@@ -184,9 +185,10 @@ def main():
     # get last five entries in column form
     order_columns = get_last_5_entries_order(len(order_data))
     print(order_columns)
-    """
+    
+    # calculation of stock data based on average of last 5 days entries
     stock_data = calculate_stock_data(order_columns)
     update_worksheet(stock_data, "stock")
-   """
+   
 print("Welcome to Scoops of Life Data Automation")
 main()
