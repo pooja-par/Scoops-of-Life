@@ -121,16 +121,18 @@ def calculate_surplus_data(order_row):
     print("Calculating surplus data...\n")
     stock = SHEET.worksheet("stock").get_all_values()
     stock_row = stock[-1]
-    
+    print(stock_row)
+    print(order_row)
     surplus_data = []
     for stock, order in zip(stock_row, order_row):
+        print(stock)
         surplus = float(stock) - order
         surplus_data.append(surplus)
 
     return surplus_data
 
 
-def get_last_5_entries_order():
+def get_last_5_entries_order(n):
     """
     #Collects columns of data from order worksheet, collecting
     #the last 5 entries for each sandwich and returns the data
@@ -139,7 +141,7 @@ def get_last_5_entries_order():
     order = SHEET.worksheet("order")
 
     columns = []
-    for ind in range(1, 7):
+    for ind in range(1, n+1):
         column = order.col_values(ind)
         columns.append(column[-5:])
 
@@ -179,9 +181,11 @@ def main():
     new_surplus_data = calculate_surplus_data(order_data)
     update_worksheet(new_surplus_data, "icecream_surplus")
 
-    order_columns = get_last_5_entries_order()
+    """
+    order_columns = get_last_5_entries_order(len(order_data))
+    print(order_columns)
     stock_data = calculate_stock_data(order_columns)
     update_worksheet(stock_data, "stock")
-   
+   """
 print("Welcome to Scoops of Life Data Automation")
 main()
