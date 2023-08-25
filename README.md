@@ -1,32 +1,58 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+Scoops of Life Ice Cream Sales Optimization
 
-Welcome,
+## Description
+The Scoops of Life Ice Cream Sales Optimization script is designed to help ice cream sellers optimize their sales and manage stock based on past order data. It leverages the Google Sheets API for data storage and analysis.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+## Features
 
-## Reminders
+- Collects order data from the user.
+- Identifies the most popular ice cream flavor of the day.
+- Calculates surplus data by comparing orders with stock.
+- Calculates stock data based on the average of the last 5 days entries.
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+## Future Features
 
-## Creating the Heroku app
+- Add visualization for better data understanding.
+- Provide recommendations for adjusting stock levels.
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
 
-1. `heroku/python`
-2. `heroku/nodejs`
+## Data Model
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+- 'order': Records daily ice cream orders for different flavors.
+- 'favorit_flavor': Stores the most popular ice cream flavor and its contribution percentage.
+- 'icecream_surplus': Tracks the surplus or unfulfilled orders for each flavor.
+- 'stock': Maintains the stock levels for various ice cream flavors.
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+## Testing
+I have manually tested  this project by doing the following:
+-passed code through a PEP8 linter and confirmed there are no problems
+-Tested in my local terminal and Code Instite Heroku terminal
 
-Connect your GitHub repository and deploy as normal.
 
-## Constraints
+## Bugs
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+- Surplus data calculation may not be accurate in certain scenarios.
 
----
+## Remaining Bugs
 
-Happy coding!
+No bugs remaining
+
+- 
+## Validator Testing
+
+
+
+## Deployment
+This project was deployed using Code Institute's mock terminal for Heroku.
+
+ Steps for deployment:
+ Fork or clone this repository
+ Create a new heroku app
+ Set the buildbacks to Python and NodeJs in that order
+ link heroku app to the repository
+ Click on Deploy
+
+ ## Credits
+  Code Institute for the deployment terminal
+  
+
