@@ -1,7 +1,7 @@
 """
 Code is prepared to help icecream seller to optimize the icecream sales.
 It uses the past history to optimize the stock and determine the most
-popular icecream. 
+popular icecream.
 """
 
 import gspread
@@ -24,38 +24,43 @@ SHEET = GSPREAD_CLIENT.open('ScoopsofLife')
 def get_order_data():
     """
     Run a while loop to collect a valid string input of data from the user
-    via the terminal. These numbers represent scoop of icecreams for the different flavors.
-    Icecreams are normally measured in Kg to compare with the stock. 
-    1 scoop is assumed to be 0.1 kg. 
-    
-    Realistic input values are from 200 to 500 scoops. 
+    via the terminal.
+    These numbers represent scoop of icecreams for the different flavors.
+    Icecreams are normally measured in Kg to compare with the stock.
+    1 scoop is assumed to be 0.1 kg.
+
+    Realistic input values are from 200 to 500 scoops.
     """
     while True:
         print("------------------------------------------------\n")
         print("Please enter order data from the last market.\n")
         print("Realistic data are from 100 to 500 scoops\n")
         print("------------------------------------------------\n")
-        
+
         chocolate_str = input("Enter Chocolate Scoops:\n")
         vanilla_str = input("Enter Vanilla Scoops:\n")
         strawberry_str = input("Enter Strawberry Scoops:\n")
         mint_str = input("Enter Mint Scoops:\n")
         saffron_str = input("Enter Saffron Scoops:\n")
 
-        ice_cream_order = [chocolate_str, vanilla_str, strawberry_str, mint_str, saffron_str]
-        ice_cream_flavors = ["Chocolate", "Vanilla", "Strawberry", "Mint", "Saffron"]
+        ice_cream_order = [
+            chocolate_str, vanilla_str, strawberry_str, mint_str, saffron_str
+            ]
+        ice_cream_flavors = [
+            "Chocolate", "Vanilla", "Strawberry", "Mint", "Saffron"
+        ]
 
         if validate_data(ice_cream_order):
             print("Data is valid!\n")
-            break     
+            break
 
-    order_data = []                                 # define the list which shows data in kg
+    order_data = []              # define the list which shows data in kg
     for scoop in ice_cream_order:
-        scoop = float(scoop)*0.1                    # convert 1 scoop into 0.1 kg
+        scoop = float(scoop)*0.1              # convert 1 scoop into 0.1 kg
         order_data.append(float(scoop))
 
     total_order = sum(order_data)
-    #print(total_order)
+    # print(total_order)
 
     return order_data, ice_cream_flavors
 
@@ -67,39 +72,40 @@ def validate_data(values):
     Purpose is to raise an error even if any number is missing
     """
     try:
-        
+
         for value in values:
             value = float(value)
 
-        
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
         return False
 
     return True
 
-def find_favorit(order_data,flavors):
+
+def find_favorit(order_data, flavors):
     """
-    Purpose of this function is to identify the favorit icecream of the day. 
+    Purpose of this function is to identify the favorit icecream of the day.
     """
 
     # gives the index of the most favorit icecream from the list
-    popular_index = order_data.index(max(order_data)) 
-    popular_flavor = flavors[popular_index]             # Provides the best flavor
-    favorit_quantity = order_data[popular_index]        # provides quantity of the favorit icecream
-
+    popular_index = order_data.index(max(order_data))
+    popular_flavor = flavors[popular_index]  # Provides the best flavor
+    # provides quantity of the favorit icecream
+    favorit_quantity = order_data[popular_index]
     total_order = sum(order_data)
     favorit_contribution = (favorit_quantity/total_order)*100
 
-    favorit_icecream = [popular_flavor, format(favorit_quantity, ".2f"), 
-                        format(total_order, ".2f"), str(format(favorit_contribution, ".2f")) + " %"]
+    favorit_icecream = [popular_flavor, format(favorit_quantity, ".2f"),
+                        format(total_order, ".2f"),
+                        str(format(favorit_contribution, ".2f")) + "%"]
 
 
-    return favorit_icecream
-
+return favorit_icecream
 
 
 def update_worksheet(data, worksheet):
+
     """
     Receives a list of values to be inserted into a worksheet
     Update the relevant worksheet with the data provided
@@ -116,8 +122,8 @@ def calculate_surplus_data(order_row):
 
     The surplus is defined as the sales figure subtracted from the stock:
     - Positive surplus indicates waste
-    - Negative surplus indicates orders, which were not fulfilled 
-    """
+    - Negative surplus indicates orders, which were not fulfilled
+   """
 
     print("Calculating surplus data...\n")
     stock = SHEET.worksheet("stock").get_all_values()
@@ -168,23 +174,26 @@ def main():
     """
 
     # Enter data into terminal by user
-    order_data,flavors = get_order_data()
+    order_data, flavors = get_order_data()
     update_worksheet(order_data, "order")
 
     # Identifying the most popular flavor with the % contribution
-    favorit_icecream =  find_favorit(order_data,flavors)
+    favorit_icecream = find_favorit(order_data, flavors)
     update_worksheet(favorit_icecream, "favorit_flavor")
-    
+
     # Calculate the surplus data
     new_surplus_data = calculate_surplus_data(order_data)
     update_worksheet(new_surplus_data, "icecream_surplus")
 
     # get last five entries in column form
     order_columns = get_last_5_entries_order(len(order_data))
-    
+
     # calculation of stock data based on average of last 5 days entries
     stock_data = calculate_stock_data(order_columns)
     update_worksheet(stock_data, "stock")
-   
+
+
 print("Welcome to Scoops of Life Data Automation")
+
+
 main()
