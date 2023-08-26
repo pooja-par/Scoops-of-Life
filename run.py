@@ -199,4 +199,4 @@ print("Welcome to Scoops of Life Data Automation")
 
 
 main()
-print("Thank you, Data Analysis ends here.")
+print("Thank you for your entries, see you tomorrow")
