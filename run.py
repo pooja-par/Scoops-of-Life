@@ -102,6 +102,7 @@ def find_favorit(order_data, flavors):
     print(f"Favorite ice cream of the day is: {favorit_icecream[0]}\n")
     return favorit_icecream
 
+
 def update_worksheet(data, worksheet):
 
     """

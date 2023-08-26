@@ -28,20 +28,22 @@ The Scoops of Life Ice Cream Sales Optimization script is designed to help ice c
 I have manually tested  this project by doing the following:
 -passed code through a PEP8 linter and confirmed there are no problems
 -Tested in my local terminal and Code Instite Heroku terminal
--
+-Check has been made by giving different numbers and also with empty field and random characters. With empty space and random characters, code return error and ask user to reenter the count again. 
+-Where necessary, by print values are checked in terminal. 
 
 
 ## Bugs
 
-- Surplus data calculation may not be accurate in certain scenarios.
+- NO known bugs
 
 ## Remaining Bugs
 
 No bugs remaining
 
-- 
-## Validator Testing
 
+## Validator Testing
+Code has been checked in "https://pep8ci.herokuapp.com/". No errors identified. 
+![Validator Check](https://github.com/pooja-par/Scoops-of-Life/blob/main/images/code_validate.png)
 
 
 
@@ -50,11 +52,15 @@ No bugs remaining
 This project was deployed using Code Institute's mock terminal for Heroku.
 
  Steps for deployment:
- Fork or clone this repository
- Create a new heroku app
- Set the buildbacks to Python and NodeJs in that order
- link heroku app to the repository
- Click on Deploy
+ -Login to heroku and enter your detail
+ -Fork or clone this repository 
+ -Create a new heroku app
+ -Create config-var : var-CREDS and var-PORT
+ -Set the buildbacks to Python and NodeJs in that order
+ -Select github for the deployment within deployment tab
+ -Select manual deploy option
+ -link heroku app to the repository
+ -Click on Deploy
 
  ## Credits
   Code Institute for the deployment terminal
