@@ -12,8 +12,9 @@ The Scoops of Life Ice Cream Sales Optimization script is designed to help ice c
 
 ## Future Features
 
-- Add visualization for better data understanding.
-- Provide recommendations for adjusting stock levels.
+- Temperature dependent icecream order to forecast future orders. 
+- Optimize the staff allocation.
+
 
 
 ## Data Model
@@ -39,6 +40,7 @@ No bugs remaining
 
 - 
 ## Validator Testing
+image.png
 
 
 
