@@ -60,9 +60,14 @@ This project was deployed using Code Institute's mock terminal for Heroku.
  -Select github for the deployment within deployment tab
  -Select manual deploy option
  -link heroku app to the repository
- -Click on Deploy branch
+ -Click on Deploy branch.
 
  ## Credits
-  Code Institute for the deployment terminal
+ -Code Institute for the deployment terminal.
+-Some part of the code has been taken from the sample project "Love sandwiches".
+-new way of entering data has been implemented. 
+-float values are introduced.
+-function to identify the most popular ice-cream has been added.
+ 
   
 
