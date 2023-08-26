@@ -49,7 +49,6 @@ def get_order_data():
         ice_cream_flavors = [
             "Chocolate", "Vanilla", "Strawberry", "Mint", "Saffron"
         ]
-
         if validate_data(ice_cream_order):
             print("Data is valid!\n")
             break
@@ -98,11 +97,10 @@ def find_favorit(order_data, flavors):
 
     favorit_icecream = [popular_flavor, format(favorit_quantity, ".2f"),
                         format(total_order, ".2f"),
-                        str(format(favorit_contribution, ".2f")) + "%"]
+                        str(format(favorit_contribution, ".2f")) + " %"]
 
-
-return favorit_icecream
-
+    print(f"Favorite ice cream of the day is: {favorit_icecream[0]}\n")
+    return favorit_icecream
 
 def update_worksheet(data, worksheet):
 
@@ -132,6 +130,8 @@ def calculate_surplus_data(order_row):
     for stock, order in zip(stock_row, order_row):
         surplus = float(stock) - order
         surplus_data.append(surplus)
+
+    print(f"Surplus data: {surplus_data}\n")
 
     return surplus_data
 
@@ -165,6 +165,8 @@ def calculate_stock_data(data):
         stock_num = average * 1.1
         new_stock_data.append(round(stock_num))
 
+    print(f"Calculated Stock data: {new_stock_data}\n")
+
     return new_stock_data
 
 
@@ -197,3 +199,4 @@ print("Welcome to Scoops of Life Data Automation")
 
 
 main()
+print("Thank you, Data Analysis ends here.")

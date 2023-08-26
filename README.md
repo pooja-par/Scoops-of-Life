@@ -28,6 +28,7 @@ The Scoops of Life Ice Cream Sales Optimization script is designed to help ice c
 I have manually tested  this project by doing the following:
 -passed code through a PEP8 linter and confirmed there are no problems
 -Tested in my local terminal and Code Instite Heroku terminal
+-
 
 
 ## Bugs
@@ -40,7 +41,8 @@ No bugs remaining
 
 - 
 ## Validator Testing
-image.png
+
+
 
 
 
