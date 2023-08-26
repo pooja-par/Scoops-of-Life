@@ -60,7 +60,7 @@ This project was deployed using Code Institute's mock terminal for Heroku.
  -Select github for the deployment within deployment tab
  -Select manual deploy option
  -link heroku app to the repository
- -Click on Deploy
+ -Click on Deploy branch
 
  ## Credits
   Code Institute for the deployment terminal
